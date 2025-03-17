@@ -1,0 +1,25 @@
+import { Route, Routes } from "react-router";
+import LoginPage from "./pages/login/login";
+import SignUpPage from "./pages/signup/register";
+import Dashboard from "./pages/dashboard/dashboard";
+import ProductMaster from "./pages/master/product-master";
+import InventoryMaster from "./pages/master/inventory-master";
+import Page from "./pages/dashboard/page";
+
+function App() {
+  return (
+    <>
+      <Routes>
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<SignUpPage />} />
+        <Route path="/" element={<Dashboard />}>
+          <Route index element={<Page />} />
+          <Route path="product-master" element={<ProductMaster />} />
+          <Route path="inventory-master" element={<InventoryMaster />} />
+        </Route>
+      </Routes>
+    </>
+  );
+}
+
+export default App;
