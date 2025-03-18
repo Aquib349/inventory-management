@@ -19,7 +19,7 @@ const ProductPagination = ({
 }: productPaginationProps) => {
   return (
     <>
-      <div className="mt-4 flex justify-center">
+      <div className="flex justify-center absolute -bottom-11 right-2">
         <Pagination>
           <PaginationContent>
             <PaginationItem>

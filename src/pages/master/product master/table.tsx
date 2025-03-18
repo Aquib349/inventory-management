@@ -1,15 +1,7 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Eye } from "lucide-react";
 
-interface productMasterProps {
+interface ProductMasterProps {
   tableContainerRef: any;
   paginatedData: any;
   handleViewDetails: (item: any) => void;
@@ -19,52 +11,51 @@ const ProductTable = ({
   tableContainerRef,
   paginatedData,
   handleViewDetails,
-}: productMasterProps) => {
+}: ProductMasterProps) => {
   return (
-    <>
-      <div className="border rounded-md overflow-hidden">
-        <div ref={tableContainerRef} className="overflow-y-auto">
-          <Table>
-            <TableHeader className="sticky top-0 bg-gray-300 z-10">
-              <TableRow className="rounded-md">
-                <TableHead className="font-bold">Sl. No</TableHead>
-                <TableHead className="font-bold">Item Name</TableHead>
-                <TableHead className="font-bold">Item Code</TableHead>
-                <TableHead className="font-bold">Brand</TableHead>
-                <TableHead className="font-bold">GST</TableHead>
-                <TableHead className="font-bold">HSN Code</TableHead>
-                <TableHead className="font-bold">Action</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {paginatedData.map((item: any) => (
-                <TableRow
-                  key={item.id}
-                  className="odd:bg-gray-50 even:bg-gray-100"
-                >
-                  <TableCell>{item.id}</TableCell>
-                  <TableCell>{item.itemName}</TableCell>
-                  <TableCell>{item.itemCode}</TableCell>
-                  <TableCell>{item.brand}</TableCell>
-                  <TableCell>{item.gst}</TableCell>
-                  <TableCell>{item.hsnCode}</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="outline"
-                      className="cursor-pointer text-xs"
-                      size="sm"
-                      onClick={() => handleViewDetails(item)}
-                    >
-                      <Eye size={12} /> View
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
+    <div className="overflow-hidden relative text-sm">
+      <div
+        ref={tableContainerRef}
+        className="max-h-[calc(100vh-160px)] overflow-y-auto rounded-xl"
+      >
+        <table className="w-full border-collapse">
+          <thead className="bg-gray-300 sticky top-0 z-10">
+            <tr>
+              <th className="p-2 border-r text-left">Sl. No</th>
+              <th className="p-2 border-r text-left">Item Name</th>
+              <th className="p-2 border-r text-left">Item Code</th>
+              <th className="p-2 border-r text-left">Brand</th>
+              <th className="p-2 border-r text-left">GST</th>
+              <th className="p-2 border-r text-left">HSN Code</th>
+              <th className="p-2 text-left">Action</th>
+            </tr>
+          </thead>
+          {/* Table Body */}
+          <tbody>
+            {paginatedData.map((item: any) => (
+              <tr key={item.id} className="odd:bg-gray-50 even:bg-gray-100">
+                <td className="p-1.5 border-r">{item.id}</td>
+                <td className="p-1.5 border-r">{item.itemName}</td>
+                <td className="p-1.5 border-r">{item.itemCode}</td>
+                <td className="p-1.5 border-r">{item.brand}</td>
+                <td className="p-1.5 border-r">{item.gst}</td>
+                <td className="p-1.5 border-r">{item.hsnCode}</td>
+                <td className="p-1.5 ">
+                  <Button
+                    variant="outline"
+                    className="cursor-pointer text-xs flex items-center gap-1"
+                    size="sm"
+                    onClick={() => handleViewDetails(item)}
+                  >
+                    <Eye size={12} /> View
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </>
+    </div>
   );
 };
 
