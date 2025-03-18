@@ -21,7 +21,7 @@ const data = {
     },
     {
       title: "Master",
-      url: "#",
+      url: "/product-master",
       icon: Boxes,
       isActive: true,
       items: [
