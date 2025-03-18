@@ -3,7 +3,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { GalleryVerticalEnd } from "lucide-react";
 
 export function Company() {
   return (
@@ -13,8 +12,12 @@ export function Company() {
           size="lg"
           className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground hover:bg-transparent"
         >
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-            <GalleryVerticalEnd className="size-4" />
+          <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
+            <img
+              src="https://icon-library.com/images/inventory-icon/inventory-icon-8.jpg"
+              alt="Company Logo"
+              className="w-8 h-8 object-cover rounded-md"
+            />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight text-white">
             <span className="truncate text-xl font-bold">Company Name</span>

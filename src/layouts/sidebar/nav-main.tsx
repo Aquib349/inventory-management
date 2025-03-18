@@ -54,7 +54,7 @@ export function NavMain({
                   >
                     <SidebarMenuButton
                       tooltip={item.title}
-                      className={`font-medium ${isActive ? "" : ""}`}
+                      className={`font-medium ${isActive ? "bg-white/20 text-white" : ""}`}
                     >
                       {item.icon && <item.icon size={16} />}
                       <span>{item.title}</span>
@@ -72,11 +72,11 @@ export function NavMain({
                       const isSubActive = location.pathname === subItem.url;
                       return (
                         <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
+                          <SidebarMenuSubButton asChild className="hover:bg-white/20 hover:text-white">
                             <Link
                               to={subItem.url}
-                              className={`block px-4 py-2 truncate text-white ${
-                                isSubActive ? "" : ""
+                              className={`block px-4 py-2 truncate ${
+                                isSubActive ? "text-white" : "text-white/50"
                               }`}
                             >
                               {subItem.title}
@@ -97,7 +97,9 @@ export function NavMain({
               >
                 <SidebarMenuButton
                   tooltip={item.title}
-                  className={`font-medium ${isActive ? "" : ""}`}
+                  className={`font-medium ${
+                    isActive ? "bg-white/20 text-white" : ""
+                  }`}
                 >
                   {item.icon && <item.icon size={16} />}
                   <span>{item.title}</span>

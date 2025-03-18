@@ -1,5 +1,3 @@
-"use client";
-
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -120,7 +118,7 @@ export function LoginForm({
           </Button>
         </div>
 
-        <div className="text-sm text-center">
+        {/* <div className="text-sm text-center">
           Don&apos;t have an account?{" "}
           <Link
             to="/register"
@@ -128,7 +126,7 @@ export function LoginForm({
           >
             Sign up
           </Link>
-        </div>
+        </div> */}
       </form>
     </Form>
   );
