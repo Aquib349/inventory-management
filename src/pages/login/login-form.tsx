@@ -13,13 +13,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Link } from "react-router";
-import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
-// import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/hooks/use-auth";
 
 const loginSchema = z.object({
-  email: z.string().email({ message: "Invalid email address" }),
-  password: z
+  userId: z
+    .string()
+    .min(3, { message: "Username must be of atleast 3 characters" }),
+  userPassword: z
     .string()
     .min(6, { message: "Password must be at least 6 characters" }),
 });
@@ -28,25 +29,17 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"form">) {
-  const [loading, setLoading] = useState<boolean>(false);
-  // const { login } = useAuth();
+  const { loading, login } = useAuth();
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      userId: "",
+      userPassword: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    console.log(values);
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setLoading(false);
-      // login({ data: values });
-    }, 2000);
-
-    return () => clearInterval(timer);
+    login(values);
   };
 
   return (
@@ -65,16 +58,16 @@ export function LoginForm({
         <div className="grid gap-4">
           <FormField
             control={form.control}
-            name="email"
+            name="userId"
             render={({ field }) => (
               <FormItem>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="userId">Username</Label>
                 <FormControl>
                   <Input
-                    id="email"
-                    type="email"
+                    id="userId"
+                    type="text"
                     className="text-sm"
-                    placeholder="m@example.com"
+                    placeholder="abcd4tej"
                     {...field}
                   />
                 </FormControl>
@@ -85,11 +78,11 @@ export function LoginForm({
 
           <FormField
             control={form.control}
-            name="password"
+            name="userPassword"
             render={({ field }) => (
               <FormItem>
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="userPassword">Password</Label>
                   <Link
                     to="#"
                     className="text-sm underline-offset-4 hover:underline"
@@ -99,7 +92,7 @@ export function LoginForm({
                 </div>
                 <FormControl>
                   <Input
-                    id="password"
+                    id="userPassword"
                     type="password"
                     className="text-sm"
                     {...field}

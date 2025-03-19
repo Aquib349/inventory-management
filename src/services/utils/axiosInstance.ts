@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://62.72.57.219:8088",
+  baseURL: "http://ims-svc1.us-east-1.elasticbeanstalk.com",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
