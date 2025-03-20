@@ -14,9 +14,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://imslb-878196465.us-east-1.elb.amazonaws.com", // Still HTTP but avoids mixed content error
+        target: "http://imslb-878196465.us-east-1.elb.amazonaws.com",
         changeOrigin: true,
-        secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
