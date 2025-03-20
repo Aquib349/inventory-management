@@ -14,8 +14,9 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://ims-svc1.us-east-1.elasticbeanstalk.com",
+        target: "http://ims-svc1.us-east-1.elasticbeanstalk.com", // Still HTTP but no mixed content error
         changeOrigin: true,
+        secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
