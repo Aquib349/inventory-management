@@ -5,8 +5,8 @@ import Dashboard from "./pages/dashboard/dashboard";
 import ProductMaster from "./pages/master/product master/product-master";
 import InventoryMaster from "./pages/master/inventory master/inventory-master";
 import Page from "./pages/dashboard/page";
-import { PrivateRoute } from "./authentication/private-route";
-import { AuthContextProvider } from "./contexts/auth-context";
+// import { PrivateRoute } from "./authentication/private-route";
+// import { AuthContextProvider } from "./contexts/auth-context";
 
 function App() {
   return (

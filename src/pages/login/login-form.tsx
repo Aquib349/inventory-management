@@ -13,8 +13,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Link } from "react-router";
-import { LoaderCircle } from "lucide-react";
-import { useAuth } from "@/hooks/use-auth";
+// import { LoaderCircle } from "lucide-react";
+// import { useAuth } from "@/hooks/use-auth";
 
 const loginSchema = z.object({
   userId: z
@@ -40,6 +40,7 @@ export function LoginForm({
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
     // login(values);
+    console.log(values);
   };
 
   return (
