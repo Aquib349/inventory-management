@@ -11,19 +11,19 @@ import { AuthContextProvider } from "./contexts/auth-context";
 function App() {
   return (
     <>
-      <AuthContextProvider>
+      {/* <AuthContextProvider> */}
       <Routes>
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<SignUpPage />} />
-        <Route element={<PrivateRoute />}>
+        {/* <Route element={<PrivateRoute />}> */}
         <Route path="/" element={<Dashboard />}>
           <Route index element={<Page />} />
           <Route path="product-master" element={<ProductMaster />} />
           <Route path="inventory-master" element={<InventoryMaster />} />
           </Route>
-        </Route>
+        {/* </Route> */}
       </Routes>
-      </AuthContextProvider>
+      {/* </AuthContextProvider> */}
     </>
   );
 }

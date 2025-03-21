@@ -29,7 +29,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"form">) {
-  const { loading, login } = useAuth();
+  // const { loading, login } = useAuth();
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -39,7 +39,7 @@ export function LoginForm({
   });
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    login(values);
+    // login(values);
   };
 
   return (
@@ -107,7 +107,7 @@ export function LoginForm({
             type="submit"
             className="w-full bg-[#1e4e9b] hover:bg-[#0e3473]"
           >
-            {loading ? <LoaderCircle className="animate-spin" /> : "Login"}
+            {/* {loading ? <LoaderCircle className="animate-spin" /> : "Login"} */}
           </Button>
         </div>
 
