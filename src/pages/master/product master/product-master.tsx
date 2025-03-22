@@ -1,12 +1,15 @@
 import { useRef, useState } from "react";
 import ProductTable from "./table";
-import ProductPagination from "./pagination";
 import ProductDailog from "./dailog";
 import ProductSearch from "./search";
+import CustomPagination from "@/components/ui/custom-pagination";
+import { useProduct } from "@/hooks/use-product";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 
 const ITEMS_PER_PAGE = 20;
 
 const ProductMaster = () => {
+  const { allProducts, loading } = useProduct();
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,26 +20,8 @@ const ProductMaster = () => {
     setIsOpen(true);
   };
 
-  const data = Array.from({ length: 35 }).map((_, index) => ({
-    id: index + 1,
-    itemName: `Product ${index + 1}`,
-    itemCode: `P-${1000 + index}`,
-    brand: `Brand ${index + 1}`,
-    product: `Category ${index + 1}`,
-    gst: `${5 + index}%`,
-    hsnCode: `HSN${1000 + index}`,
-    barcode: `BRC${1000 + index}`,
-    purchaseUOM: "PCS",
-    shelfLife: `${12 + index} months`,
-    unitsPerBox: 10 + index,
-    purchasePrice: `$${(10 + index).toFixed(2)}`,
-    sellingPrice: `$${(15 + index).toFixed(2)}`,
-    mrp: `$${(20 + index).toFixed(2)}`,
-    status: index % 2 === 0 ? "Active" : "Inactive",
-  }));
-
-  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
-  const paginatedData = data.slice(
+  const totalPages = Math.ceil((allProducts ?? []).length / ITEMS_PER_PAGE);
+  const paginatedData = (allProducts ?? []).slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -46,6 +31,10 @@ const ProductMaster = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="relative space-y-2">
       <ProductSearch />
@@ -54,7 +43,7 @@ const ProductMaster = () => {
         paginatedData={paginatedData}
         handleViewDetails={handleViewDetails}
       />
-      <ProductPagination
+      <CustomPagination
         currentPage={currentPage}
         handlePageChange={handlePageChange}
         totalPages={totalPages}

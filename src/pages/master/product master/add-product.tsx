@@ -17,9 +17,9 @@ const AddProduct = ({ isOpen, setIsOpen }: AddProductProps) => {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Product Details</DialogTitle>
+            <DialogTitle>Hey There !!</DialogTitle>
           </DialogHeader>
-          Hello !!
+          Our Team working on it.
         </DialogContent>
       </Dialog>
     </>

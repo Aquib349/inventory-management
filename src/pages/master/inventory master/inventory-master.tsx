@@ -1,75 +1,46 @@
-import React, { useState } from "react";
-import { useDropzone } from "react-dropzone";
-import * as XLSX from "xlsx";
+import { useRef, useState } from "react";
+import CustomPagination from "@/components/ui/custom-pagination";
+import LoadingSpinner from "@/components/ui/loading-spinner";
+import InventoryTable from "./table";
+import { useInventory } from "@/hooks/use-inventory";
+import InventoryProductSearch from "./search";
 
-const InventoryMaster: React.FC = () => {
-  const [data, setData] = useState<any[]>([]);
+const ITEMS_PER_PAGE = 20;
 
-  const onDrop = (acceptedFiles: File[]) => {
-    const file = acceptedFiles[0];
-    if (!file) return;
+const InventoryMaster = () => {
+  const { allInventoryProducts, loading } = useInventory();
+  const [currentPage, setCurrentPage] = useState(1);
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
-    const reader = new FileReader();
-    reader.readAsBinaryString(file);
-    reader.onload = (event) => {
-      const binaryStr = event.target?.result;
-      const workbook = XLSX.read(binaryStr, { type: "binary" });
-      const sheetName = workbook.SheetNames[0]; // Read first sheet
-      const worksheet = workbook.Sheets[sheetName];
-      const jsonData = XLSX.utils.sheet_to_json(worksheet);
-      setData(jsonData);
-    };
+  const totalPages = Math.ceil(
+    (allInventoryProducts ?? []).length / ITEMS_PER_PAGE
+  );
+  const paginatedData = (allInventoryProducts ?? []).slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: {
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [
-        ".xlsx",
-      ],
-      "application/vnd.ms-excel": [".xls"],
-    },
-  });
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
-    <div className="p-4 border border-gray-300 rounded-md">
-      {/* File Upload */}
-      <div
-        {...getRootProps()}
-        className="p-6 border-dashed border-2 cursor-pointer"
-      >
-        <input {...getInputProps()} />
-        <p>Drag & drop an Excel file here, or click to select one</p>
-      </div>
-
-      {/* Display Data */}
-      {data.length > 0 && (
-        <div className="mt-4">
-          <h2 className="text-lg font-bold">Excel Data:</h2>
-          <table className="border-collapse border border-gray-400 w-full">
-            <thead>
-              <tr>
-                {Object.keys(data[0]).map((key) => (
-                  <th key={key} className="border border-gray-300 p-2">
-                    {key}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((row, index) => (
-                <tr key={index}>
-                  {Object.values(row).map((value, i) => (
-                    <td key={i} className="border border-gray-300 p-2">
-                      {value as string}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+    <div className="relative space-y-2">
+      <InventoryProductSearch />
+      <InventoryTable
+        tableContainerRef={tableContainerRef}
+        paginatedData={paginatedData}
+      />
+      <CustomPagination
+        currentPage={currentPage}
+        handlePageChange={handlePageChange}
+        totalPages={totalPages}
+      />
     </div>
   );
 };

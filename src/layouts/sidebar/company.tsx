@@ -3,6 +3,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Logo from "../../assets/swiss-military.jpeg";
 
 export function Company() {
   return (
@@ -14,13 +15,13 @@ export function Company() {
         >
           <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
             <img
-              src="https://icon-library.com/images/inventory-icon/inventory-icon-8.jpg"
+              src={Logo}
               alt="Company Logo"
               className="w-8 h-8 object-cover rounded-md"
             />
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight text-white">
-            <span className="truncate text-xl font-bold">Company Name</span>
+            <span className="truncate text-xl font-bold">Swiss Military</span>
             <span className="truncate text-xs"></span>
           </div>
         </SidebarMenuButton>

@@ -12,7 +12,7 @@ interface productPaginationProps {
   totalPages: number;
 }
 
-const ProductPagination = ({
+const CustomPagination = ({
   currentPage,
   handlePageChange,
   totalPages,
@@ -48,4 +48,4 @@ const ProductPagination = ({
   );
 };
 
-export default ProductPagination;
+export default CustomPagination;

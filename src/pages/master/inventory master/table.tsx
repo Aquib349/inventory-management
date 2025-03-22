@@ -1,16 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { Eye } from "lucide-react";
-
 interface ProductMasterProps {
   tableContainerRef: any;
   paginatedData: any;
-  handleViewDetails: (item: any) => void;
 }
 
-const ProductTable = ({
+const InventoryTable = ({
   tableContainerRef,
   paginatedData,
-  handleViewDetails,
 }: ProductMasterProps) => {
   return (
     <div className="grid grid-cols-[auto_1fr]">
@@ -27,36 +22,32 @@ const ProductTable = ({
                     Sl. No
                   </th>
                   <th className="py-2 border-r text-start font-medium px-4 min-w-[200px]">
+                    Inventory Name
+                  </th>
+                  <th className="py-2 border-r text-start font-medium px-4 min-w-[150px]">
+                    Inventory Code
+                  </th>
+                  <th className="py-2 border-r text-start font-medium px-4 min-w-[150px]">
+                    Brand Name
+                  </th>
+                  <th className="py-2 border-r text-start font-medium px-4 min-w-[200px]">
+                    Product Name
+                  </th>
+                  <th className="py-2 border-r text-start font-medium px-4 min-w-[250px]">
                     Item Name
                   </th>
                   <th className="py-2 border-r text-start font-medium px-4 min-w-[250px]">
                     Item Code
                   </th>
-                  <th className="py-2 border-r text-start font-medium px-4 min-w-[150px]">
-                    Brand
-                  </th>
-                  <th className="py-2 border-r text-start font-medium px-4 min-w-[150px]">
-                    Product
-                  </th>
-                  <th className="py-2 border-r text-start font-medium px-4 min-w-[200px]">
-                    Product Type
-                  </th>
-                  <th className="py-2 border-r text-start font-medium px-4 min-w-[100px]">
-                    GST
-                  </th>
                   <th className="py-2 border-r text-start font-medium px-4 min-w-[120px]">
-                    HSN Code
+                    Good Qty
                   </th>
                   <th className="py-2 border-r text-start font-medium px-4 min-w-[150px]">
-                    Purchase Price
+                    Expiry Qty
                   </th>
                   <th className="py-2 border-r text-start font-medium px-4 min-w-[150px]">
-                    Selling Price
+                    Damage Qty
                   </th>
-                  <th className="py-2 border-r text-start font-medium px-4 min-w-[100px]">
-                    MRP
-                  </th>
-                  <th className="py-2 text-start px-4 min-w-[150px]">Action</th>
                 </tr>
               </thead>
 
@@ -68,38 +59,31 @@ const ProductTable = ({
                       {index + 1}
                     </td>
                     <td className="py-1.5 px-4 text-sm border-r">
-                      {item.product}
+                      {item.inventoryName}
                     </td>
                     <td className="py-1.5 px-4 text-sm border-r">
-                      {item.code}
+                      {item.inventoryCode}
                     </td>
                     <td className="py-1.5 px-4 text-sm border-r">
-                      {item.brand}
+                      {item.brandName}
                     </td>
                     <td className="py-1.5 px-4 text-sm border-r">
-                      {item.categoryName}
+                      {item.productName}
                     </td>
                     <td className="py-1.5 px-4 text-sm border-r">
-                      {item.categoryType}
-                    </td>
-                    <td className="py-1.5 px-4 text-sm border-r">{item.gst}</td>
-                    <td className="py-1.5 px-4 text-sm border-r">{item.hsn}</td>
-                    <td className="py-1.5 px-4 text-sm border-r">
-                      {item.purchasePrice}
+                      {item.itemName}
                     </td>
                     <td className="py-1.5 px-4 text-sm border-r">
-                      {item.sellingPrice}
+                      {item.itemCode}
                     </td>
-                    <td className="py-1.5 px-4 text-sm border-r">{item.mrp}</td>
-                    <td className="py-1.5 px-4 text-sm ">
-                      <Button
-                        variant="outline"
-                        className="cursor-pointer text-xs flex items-center gap-1"
-                        size="sm"
-                        onClick={() => handleViewDetails(item)}
-                      >
-                        <Eye size={12} /> View
-                      </Button>
+                    <td className="py-1.5 px-4 text-sm border-r">
+                      {item.goodQty}
+                    </td>
+                    <td className="py-1.5 px-4 text-sm border-r">
+                      {item.expiryQty}
+                    </td>
+                    <td className="py-1.5 px-4 text-sm border-r">
+                      {item.damageQty}
                     </td>
                   </tr>
                 ))}
@@ -112,4 +96,4 @@ const ProductTable = ({
   );
 };
 
-export default ProductTable;
+export default InventoryTable;

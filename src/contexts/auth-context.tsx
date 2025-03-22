@@ -41,6 +41,7 @@ export const AuthContextProvider: React.FC<AuthProviderProps> = ({
       if (response?.status === "Active") {
         setLoading(false);
         localStorage.setItem("status", response?.status);
+        localStorage.setItem("user", JSON.stringify(response?.identity));
         setIsAuthenticated(true);
         navigate("/");
       }

@@ -2,11 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FileSpreadsheet } from "lucide-react";
 import { useState, useRef } from "react";
-import AddProduct from "./add-product";
-import { useProduct } from "@/hooks/use-product";
+import AddProduct from "../product master/add-product";
+import { useInventory } from "@/hooks/use-inventory";
 
-const ProductSearch = () => {
-  const { uploadExcelFile } = useProduct();
+const InventoryProductSearch = () => {
+  const { uploadExcelFile } = useInventory();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -54,13 +54,6 @@ const ProductSearch = () => {
           >
             <FileSpreadsheet /> Upload
           </Button>
-          <Button
-            variant="default"
-            className="bg-[#0e3473] text-xs font-normal px-6 cursor-pointer text-white"
-            onClick={() => setIsOpen(true)}
-          >
-            Add
-          </Button>
         </div>
       </div>
       <AddProduct isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -68,4 +61,4 @@ const ProductSearch = () => {
   );
 };
 
-export default ProductSearch;
+export default InventoryProductSearch;
